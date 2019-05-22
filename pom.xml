@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.javacodegeeks.example</groupId>
-	<artifactId>SpringBatchAdmin</artifactId>
+	<artifactId>SpringBatchAdmin01</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringBatchAdmin Maven Webapp</name>
@@ -83,8 +83,8 @@
 
 	</dependencies>
 	<build>
-		<finalName>SpringBatchAdmin</finalName>
-		<plugins>
+<!-- 		<finalName>SpringBatchAdmin</finalName>
+ -->		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

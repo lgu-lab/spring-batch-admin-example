@@ -14,9 +14,9 @@
 		</bean>
 
 		<!-- JMX : Spring context specific domain name -->
-		<context:mbean-export default-domain="my-domain-01-context" server="mbeanServer" />
+		<context:mbean-export default-domain="spring-my-app-01" server="mbeanServer" />
        
 		<!-- JMX : Spring integration specific domain name -->
-		<int-jmx:mbean-export id="integrationMBeanExporter" default-domain="my-domain-01-integr" server="mbeanServer" />
+		<int-jmx:mbean-export id="integrationMBeanExporter" default-domain="spring-my-app-01" server="mbeanServer" />
 
 </beans>
