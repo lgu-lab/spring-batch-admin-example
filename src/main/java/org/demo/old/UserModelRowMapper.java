@@ -1,8 +1,9 @@
-package com.javacodegeeks.example.util;
+package org.demo.old;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.demo.model.UserModel;
 import org.springframework.jdbc.core.RowMapper;
 
 public class UserModelRowMapper implements RowMapper<UserModel>{

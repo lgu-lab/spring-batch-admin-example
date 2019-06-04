@@ -1,0 +1,26 @@
+
+ web.xml
+
+    <servlet>
+		<servlet-name>Batch Servlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:/org/springframework/batch/admin/web/resources/servlet-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	
+org/springframework/batch/admin/web/resources/servlet-config.xml  ( from sources on GitHub ) :
+	
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	 	<import resource="classpath*:/META-INF/spring/batch/servlet/resources/*.xml" />
+	 	<import resource="classpath*:/META-INF/spring/batch/servlet/manager/*.xml" />
+	 	<import resource="classpath*:/META-INF/spring/batch/servlet/override/*.xml" />
+	 	
+	</beans>
+	
