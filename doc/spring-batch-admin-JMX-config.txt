@@ -1,0 +1,13 @@
+
+Define the "default-domain" name in a "xxx.xml" file 
+located in "/src/main/resources/META-INF/spring/batch/override"
+
+Example :
+
+		<!-- JMX : Spring context specific domain name -->
+		<context:mbean-export default-domain="spring-my-app-01" server="mbeanServer" />
+       
+		<!-- JMX : Spring integration specific domain name -->
+		<int-jmx:mbean-export id="integrationMBeanExporter" default-domain="spring-my-app-01" server="mbeanServer" />
+
+Each Spring Batch Admin Web App running in the same JVM must have a different "default-domain"

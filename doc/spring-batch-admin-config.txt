@@ -24,3 +24,13 @@ org/springframework/batch/admin/web/resources/servlet-config.xml  ( from sources
 	 	
 	</beans>
 	
+
+Spring Batch Admin JOBS configuration :
+
+	Spring Batch Admin documentation mentiones that jobs will be loaded 
+	if job configuration file is located in classpath under "META-INF/spring/batch/jobs"
+	This folder can contains 1..N xml files 
+	File pattern : "META-INF/spring/batch/jobs/*.xml"
+	( see https://docs.spring.io/spring-batch-admin/trunk/reference/reference.xhtml )
+
+	

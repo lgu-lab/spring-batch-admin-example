@@ -7,7 +7,11 @@
 		http://www.springframework.org/schema/jdbc 
 	    http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-	<!-- using in-memory store for batch meta-data --> 
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
+	
 	<bean id="jobRepository"
 		class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -15,15 +19,6 @@
 		<property name="databaseType" value="hsql" />
 	</bean>
  	
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>	
-	</bean>
-	 
-	<bean id="jobLauncher"
-		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
-		<property name="jobRepository" ref="jobRepository" />
-	</bean>
-	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		lazy-init="true" destroy-method="close">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
@@ -33,6 +28,10 @@
 		<property name="password" value="" />
 	</bean>
 	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>	
+	</bean>
+	 
 	
 	<!-- Create meta-tables. Here we are also invoking the initial-query.sql script  
 	<jdbc:initialize-database data-source="dataSource">
