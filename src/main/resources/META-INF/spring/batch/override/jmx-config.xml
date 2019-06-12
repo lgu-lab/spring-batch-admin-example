@@ -19,4 +19,17 @@
 		<!-- JMX : Spring integration specific domain name -->
 		<int-jmx:mbean-export id="integrationMBeanExporter" default-domain="spring-my-app-01" server="mbeanServer" />
 
+		<!-- Override the `batchMBeanExporter` and set the `proxyTargetClass` property to true on the `jobService` proxy.
+		This is a workaround for the related https://jira.spring.io/browse/BATCHADM-126 -->
+		<bean id="batchMBeanExporter" class="org.springframework.batch.admin.jmx.BatchMBeanExporter">
+			<property name="server" ref="mbeanServer"/>
+			<property name="jobService">
+			<bean class="org.springframework.aop.framework.ProxyFactoryBean">
+			<property name="targetName" value="jobService"/>
+			<property name="proxyTargetClass" value="true"/>
+		</bean>
+		</property>
+			<property name="defaultDomain" value="spring-my-app-01"/>
+		</bean>
+
 </beans>

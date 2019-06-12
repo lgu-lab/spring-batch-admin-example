@@ -2,7 +2,13 @@
 Define the "default-domain" name in a "xxx.xml" file 
 located in "/src/main/resources/META-INF/spring/batch/override"
 
+Each Spring Batch Admin Web App running in the same JVM must have a different "default-domain"
+
 Example :
+
+		<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+			<property name="locateExistingServerIfPossible" value="true" />
+		</bean>
 
 		<!-- JMX : Spring context specific domain name -->
 		<context:mbean-export default-domain="spring-my-app-01" server="mbeanServer" />
@@ -10,4 +16,17 @@ Example :
 		<!-- JMX : Spring integration specific domain name -->
 		<int-jmx:mbean-export id="integrationMBeanExporter" default-domain="spring-my-app-01" server="mbeanServer" />
 
-Each Spring Batch Admin Web App running in the same JVM must have a different "default-domain"
+		<!-- Override the `batchMBeanExporter` and set the `proxyTargetClass` property to true on the `jobService` proxy.
+		This is a workaround for the related https://jira.spring.io/browse/BATCHADM-126 -->
+		<bean id="batchMBeanExporter" class="org.springframework.batch.admin.jmx.BatchMBeanExporter">
+			<property name="server" ref="mbeanServer"/>
+			<property name="jobService">
+			<bean class="org.springframework.aop.framework.ProxyFactoryBean">
+			<property name="targetName" value="jobService"/>
+			<property name="proxyTargetClass" value="true"/>
+		</bean>
+		</property>
+			<property name="defaultDomain" value="spring-my-app-01"/>
+		</bean>
+
+
